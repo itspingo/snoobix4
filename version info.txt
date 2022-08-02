@@ -1,0 +1,4 @@
+Snoobix ver 4 is prepared for admin panel using Laravel 8
+- designer uses existing table to list down all its fields.
+- admin can set the properties of those listed items and save them
+- admin panel uses saved info to display CURD app dynamically based on saved info.
