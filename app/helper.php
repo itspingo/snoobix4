@@ -15,7 +15,7 @@ if(!function_exists('pre')){
         echo '</pre>';
     }
 }
-
+ 
 
 if(!function_exists('display_menu')){
     function display_menu(){
@@ -31,23 +31,24 @@ if(!function_exists('display_menu')){
         //dd(DB::getQueryLog());
         foreach($mdlist as $menu){
             $str_menu .= '<li class="menu-title">'.$menu->module_name.'</li>';
-            $str_menu .= sub_menus($menu->id);
+            $str_menu .= sub_menus($menu->parent_module);
         }
         return  $str_menu;
     }
 }
 
 if(!function_exists('sub_menus')){
-    function sub_menus($mnuid){
+    function sub_menus($parntModl){
         $str_sub_menu = '';
         //DB::enableQueryLog();
         $mdslist = DB::table('dznr_modules')
                     ->selectRaw(' * ')
                     ->where('active', '=', '1')
+                    ->where('parent_module', '=', $parntModl)
                     ->where('is_hidden', '=', 'N')
                     ->where('table_name', '!=', '')
-                    ->orwhereNotNull('table_name')
-                    ->where('parent_module', '=', $mnuid)
+                   // ->orwhereNotNull('table_name')
+                    
                     // ->where('parent_module', '=', '0')
                     //->orderBy('menu_seq')
                     ->get();
@@ -56,14 +57,14 @@ if(!function_exists('sub_menus')){
             if(isset($_GET['mid']) and $_GET['mid'] == $smenu->id){
                 $str_sub_menu .=    '<li class="mm-active">
                                     <a href="module?mid='.$smenu->id.'" class="waves-effect">
-                                        <i class="uil-home-alt"></i>
+                                        <i class="'.$smenu->module_icon.'"></i>
                                         <span>'.$smenu->module_name.'</span>
                                     </a>
                                 </li>';
             }else{
                 $str_sub_menu .=    '<li>
                                         <a href="module?mid='.$smenu->id.'" class="waves-effect">
-                                            <i class="uil-home-alt"></i>
+                                            <i class="'.$smenu->module_icon.'"></i>
                                             <span>'.$smenu->module_name.'</span>
                                         </a>
                                     </li>';
