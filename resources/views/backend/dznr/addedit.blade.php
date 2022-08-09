@@ -129,7 +129,14 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                         <div class="form-group">
-                                                                
+                                                                <label for="module_name form-label">Parent Menu</label>
+                                                                <select class="form-control" 
+                                                                    style="width: 100%;height:36px;" name="parent_module" id="parent_module"
+                                                                >
+                                                                    <option value="menu">Menu</option>
+                                                                    <option value="lookups">Lookups</option>
+                                                                </select>
+                                                                <div id="diverr_is_hidden" class="text-danger"></div>
                                                             </div>
                                                         </div>
                                                     </div>
