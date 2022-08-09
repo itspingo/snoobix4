@@ -51,8 +51,9 @@ class search extends Controller
             //echo $fldName.', ';
             if(isset($postData[$fldName2]) and $postData[$fldName2] != ""){
                 //$vtable_headings .= $module_field->field_label.',';
-                //$query->orWhere($fldName2, 'like' ,"%".$postData[$fldName2]."%");
-                $query->Where($fldName2, '=' , $postData[$fldName2]);
+                $query->orWhere($fldName2, 'like' ,"%".$postData[$fldName2]."%");
+                //$query->Where($fldName2, '=' , $postData[$fldName2]);
+
                 //echo $module_field['field_name'];
             }    
         }
